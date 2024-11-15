@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { addColorStrategy } from "../api";
 
 const AddStrategyForm = () => {
@@ -27,6 +36,15 @@ const AddStrategyForm = () => {
     } catch (error) {
       setErrorMessage("Error adding strategy");
       console.error("Error adding strategy:", error);
+    } finally {
+      setStrategyName("");
+      setColorSpace("");
+      setRedMin(0);
+      setRedMax(0);
+      setGreenMin(0);
+      setGreenMax(0);
+      setBlueMin(0);
+      setBlueMax(0);
     }
   };
 
@@ -40,17 +58,22 @@ const AddStrategyForm = () => {
         fullWidth
         margin="normal"
       />
-      <TextField
-        label="Color Space (e.g., RGB, HSL)"
-        value={colorSpace}
-        onChange={(e) => setColorSpace(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Color Space</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={colorSpace}
+          label="Color Space"
+          onChange={(e) => setColorSpace(e.target.value)}
+        >
+          <MenuItem value={"RGB"}>RGB</MenuItem>
+          <MenuItem value={"HSL"}>HSL</MenuItem>
+        </Select>
+      </FormControl>
       <Typography>RGB Range</Typography>
       <TextField
         label="Red Min"
-        type="number"
         value={redMin}
         onChange={(e) => setRedMin(Number(e.target.value))}
         fullWidth
@@ -58,7 +81,6 @@ const AddStrategyForm = () => {
       />
       <TextField
         label="Red Max"
-        type="number"
         value={redMax}
         onChange={(e) => setRedMax(Number(e.target.value))}
         fullWidth
@@ -66,7 +88,6 @@ const AddStrategyForm = () => {
       />
       <TextField
         label="Green Min"
-        type="number"
         value={greenMin}
         onChange={(e) => setGreenMin(Number(e.target.value))}
         fullWidth
@@ -74,7 +95,6 @@ const AddStrategyForm = () => {
       />
       <TextField
         label="Green Max"
-        type="number"
         value={greenMax}
         onChange={(e) => setGreenMax(Number(e.target.value))}
         fullWidth
@@ -82,7 +102,6 @@ const AddStrategyForm = () => {
       />
       <TextField
         label="Blue Min"
-        type="number"
         value={blueMin}
         onChange={(e) => setBlueMin(Number(e.target.value))}
         fullWidth
@@ -90,7 +109,6 @@ const AddStrategyForm = () => {
       />
       <TextField
         label="Blue Max"
-        type="number"
         value={blueMax}
         onChange={(e) => setBlueMax(Number(e.target.value))}
         fullWidth

@@ -3,7 +3,7 @@ import { Button, Box } from "@mui/material";
 import ColorSwatch from "./ColorSwatch";
 import { fetchColors } from "../api";
 
-const ColorDisplay: React.FC = () => {
+const ColorDisplay = () => {
   const [colors, setColors] = useState<
     { type: string; [key: string]: number | string }[]
   >([]);
