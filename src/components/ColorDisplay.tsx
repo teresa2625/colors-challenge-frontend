@@ -13,10 +13,6 @@ const ColorDisplay: React.FC = () => {
     setColors(newColors);
   };
 
-  useEffect(() => {
-    loadColors();
-  }, []);
-
   return (
     <Box textAlign="center">
       <Button variant="contained" onClick={loadColors}>
