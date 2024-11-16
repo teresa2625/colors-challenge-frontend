@@ -20,7 +20,9 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ color }) => {
         backgroundColor,
         display: "inline-block",
         margin: 1,
+        border: 0.5,
       }}
+      data-testid="color-swatch"
     />
   );
 };
