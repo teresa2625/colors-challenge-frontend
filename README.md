@@ -1,15 +1,4 @@
 # Project Title: Color Challenge
-Table of Contents
-Overview
-Technologies Used
-Project Setup
-Prerequisites
-Running the Backend
-Running the Frontend
-Adding New Color Strategies
-Implemented Features
-API Endpoints
-Testing
 ## Overview
 This project is a Color Swatch Generator that allows users to generate random colors using different color strategies (RGB and HSL). Users can also add their own custom color strategies through a user-friendly frontend interface. The backend is built with Node.js, and the frontend uses React.
 
