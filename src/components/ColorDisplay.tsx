@@ -7,10 +7,17 @@ const ColorDisplay = () => {
   const [colors, setColors] = useState<
     { type: string; [key: string]: number | string }[]
   >([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const loadColors = async () => {
-    const newColors = await fetchColors();
-    setColors(newColors);
+    try {
+      const newColors = await fetchColors();
+      setColors(newColors);
+      setErrorMessage("");
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("Error loading colors");
+    }
   };
 
   return (
@@ -18,10 +25,15 @@ const ColorDisplay = () => {
       <Button variant="contained" onClick={loadColors}>
         Generate Colors
       </Button>
+      {errorMessage && <p>{errorMessage}</p>}
       <Box display="flex" justifyContent="center" flexWrap="wrap" mt={2}>
-        {colors.map((color, index) => (
-          <ColorSwatch key={index} color={color} />
-        ))}
+        {colors.length > 0 ? (
+          colors.map((color, index) => (
+            <ColorSwatch key={index} color={color} />
+          ))
+        ) : (
+          <p>No colors available</p>
+        )}
       </Box>
     </Box>
   );
