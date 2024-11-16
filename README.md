@@ -1,46 +1,126 @@
-# Getting Started with Create React App
+# Project Title: Color Challenge
+Table of Contents
+Overview
+Technologies Used
+Project Setup
+Prerequisites
+Running the Backend
+Running the Frontend
+Adding New Color Strategies
+Implemented Features
+API Endpoints
+Testing
+## Overview
+This project is a Color Swatch Generator that allows users to generate random colors using different color strategies (RGB and HSL). Users can also add their own custom color strategies through a user-friendly frontend interface. The backend is built with Node.js, and the frontend uses React.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies Used
+Frontend: React, Typescript
+Backend: Node.js, File System (for managing strategies)
+Database: Not at the moment but plan to use PostgreSQL
+Testing: Jest
+Utilities: Axios (for API calls)
 
-## Available Scripts
+## Project Setup
+### Prerequisites
+Before running the project, ensure you have the following installed:
 
-In the project directory, you can run:
+- Node.js (LTS version recommended)
+- npm or Yarn (for managing dependencies)
 
-### `yarn start`
+## Running the Backend
+1. Clone the repository:
+```
+git clone https://github.com/teresa2625/colors-challenge-backend.git
+cd colors-challenge-backend
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Install the dependencies:
+```
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. Start the backend server:
+```
+npm run start
+```
+This will start the backend server, and it will be running on http://localhost:5000 by default.
 
-### `yarn test`
+## Running the Frontend
+Open a new terminal window and navigate to the frontend directory (if it's in a separate folder):
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+```
+git clone https://github.com/teresa2625/colors-challenge-frontend.git
+cd colors-challenge-frontend
+```
 
-### `yarn build`
+2. Install the frontend dependencies:
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Start the frontend development server:
+```
+npm start
+```
+This will run the frontend server, and it will be available at http://localhost:3000 by default.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Now, you can access the application by navigating to http://localhost:3000 in your browser. The frontend will interact with the backend to generate and display color swatches.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Adding New Color Strategies
+Users can add new custom color strategies via the frontend interface. Here's how:
 
-### `yarn eject`
+1. Open the app at http://localhost:3000.
+2. Navigate to the Add Strategy section.
+3. Enter a Strategy Name (e.g., CMYK, HSV) and select a Color Space (RGB or HSL). **Note: At the moment, only RGB and HSL color spaces are allowed.**
+4. Enter the Min/Max values for Red, Green, Blue (or equivalent values for other strategies you may add).
+5. Click the Add Strategy button.
+6. The new strategy will be saved to the backend as a new file in the strategy folder. **Note: This new strategy won't be usable immediately until additional logic is implemented in the backend.**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Once added, the new strategy will be saved to the system, but it will not be available to generate colors until the backend logic is updated and unit tests are written manually.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## TODO
+Here are the next steps for improving the functionality:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Backend Logic: The newly added strategies are stored as files, but the backend logic needs to be updated to load and use these strategies dynamically.
+- Unit Tests: Unit tests need to be added for the new strategies, ensuring that they function correctly.
+- Color Space Extension: Currently, only RGB and HSL color spaces are supported. Future updates should allow users to choose additional color spaces (e.g., CMYK, HSV) once the backend logic supports it.
+- Frontend Updates: The frontend needs to reflect any changes in supported color spaces and provide a user-friendly way to select from available strategies once the backend logic is extended.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Implemented Features
+- Random Color Generation: The system generates random colors based on the RGB and HSL strategies.
+- Add Custom Color Strategy: Users can define and add new color strategies through the frontend interface. These strategies are saved to the backend.
+- Color Strategies: The project currently supports generating colors in RGB and HSL formats. New strategies can be added by users, but they will not be functional until backend logic is updated.
+- Frontend and Backend Integration: The frontend interacts with the backend to fetch color swatches and add new color strategies.
+- Error Handling: Proper error handling is in place for invalid inputs or if the user tries to add a duplicate strategy.
 
-## Learn More
+## API Endpoints
+- GET /api/colors: Returns an array of random color swatches (generated using RGB and HSL strategies).
+- POST /api/strategies: Adds a new color strategy. Expects a JSON body with the strategy data (name, color space, and min/max values for color components).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Example Request to Add Strategy:
+```
+{
+  "name": "BRGB",
+  "colorSpace": "RGB",
+  "redMin": 0,
+  "redMax": 100,
+  "greenMin": 0,
+  "greenMax": 100,
+  "blueMin": 0,
+  "blueMax": 100
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Testing
+### Running Tests
+To run the tests for the backend/frontend, run the following command:
+```
+npm test
+```
+
+### Coverage
+Tests include:
+- Unit tests for color generation logic in the backend.
+- API tests for the GET and POST endpoints.
+- Frontend tests for form validation and strategy submissions.
