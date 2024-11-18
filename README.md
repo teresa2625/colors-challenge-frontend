@@ -89,15 +89,18 @@ Here are the next steps for improving the functionality:
 
 ### Example Request to Add Strategy:
 ```
+
 {
   "name": "BRGB",
   "colorSpace": "RGB",
-  "redMin": 0,
-  "redMax": 100,
-  "greenMin": 0,
-  "greenMax": 100,
-  "blueMin": 0,
-  "blueMax": 100
+  "rgbRange":{
+    "redMin": 0,
+    "redMax": 100,
+    "greenMin": 0,
+    "greenMax": 100,
+    "blueMin": 0,
+    "blueMax": 100
+  }
 }
 ```
 
